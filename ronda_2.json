@@ -1,0 +1,142 @@
+{
+	"ronda": 2,
+	"preguntas": [
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "El honrado leñador. Había una vez un pobre leñador que regresaba a su casa después de una jornada de duro trabajo. Al cruzar un puentecillo sobre el río, se le cayó el hacha al agua. Entonces empezó a lamentarse tristemente: ¿Cómo me ganaré el sustento ahora que no tengo hacha? Al instante ¡oh, maravilla! Una bella ninfa aparecía sobre las aguas y dijo al leñador: Espera, buen hombre: traeré tu hacha. Se hundió en la corriente y poco después reaparecía con un hacha de oro entre las manos. El leñador dijo que aquella no era la suya. Por segunda vez se sumergió la ninfa, para reaparecer después con otra hacha de plata. Tampoco es la mía dijo el afligido leñador. Por tercera vez la ninfa buscó bajo el agua. Al reaparecer llevaba un hacha de hierro. ¡Oh gracias, gracias! ¡Esa es la mía! Pero, por tu honradez, yo te regalo las otras dos. Has preferido la pobreza a la mentira y te mereces un premio. ¿De qué material estaba construida la primera hacha que sacó la ninfa del agua?",
+			"opciones": [
+				"De oro",
+				"De plata",
+				"De cobre"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "¿Qué lugar estaba cruzando el leñador cuando se le cayó el hacha al agua?",
+			"opciones": [
+				"Un puentecillo",
+				"Un túnel",
+				"Un viaducto"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "El leñador prefirió la pobreza a la...",
+			"opciones": [
+				"A la mentira",
+				"Recompensa",
+				"A la verdad"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "Diego separó un sexto de su salario para pasear y un cuarto para comprar ropa. ¿Qué fracción de salario resta para otros usos diferentes a pasear y ropa?",
+			"opciones": [
+				"siete doceavos",
+				"dos décimos",
+				"cinco doceavos",
+				"seis veinticuatroavos"
+			],
+			"dificultad": "difícil",
+			"puntos": 1,
+			"monedas": 2
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "Una panadera vendió 1250 pasteles de varios sabores. De ese total el 40% eran de queso. ¿Cuántos pasteles de queso fueron vendidos?",
+			"opciones": [
+				"500",
+				"650",
+				"700",
+				"450"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "Pablo quiere hacer un viaje de 300 kilómetros. Su auto recorre, en promedio, 13 kilómetros por cada litro de gasolina. ¿Cuántos litros debe tener en el tanque para completar el viaje?",
+			"opciones": [
+				"24",
+				"20",
+				"32",
+				"30"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Biología",
+			"pregunta": "¿A qué aparato pertenece la Tráquea?",
+			"opciones": [
+				"Respiratorio",
+				"Escretor",
+				"Circulatorio",
+				"Digestivo"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Biología",
+			"pregunta": "¿Cuál de estas es una enfermedad mental relacionada con la nutrición?",
+			"opciones": [
+				"Anorexia",
+				"Raquitismo",
+				"Obesidad",
+				"Escorbuto"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Geología",
+			"pregunta": "¿En qué estación los días son más largos que las noches?",
+			"opciones": [
+				"En verano",
+				"En otoño.",
+				"En primavera.",
+				"En invierno."
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Geología",
+			"pregunta": "¿Cuándo empieza la primavera?",
+			"opciones": [
+				"Entre el 20 y el 21 de marzo",
+				"Entre el 10 y el 11 de marzo",
+				"Entre el 20 y el 21 de mayo",
+				"Entre el 10 y el 11 de mayo"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		}
+	]
+}
