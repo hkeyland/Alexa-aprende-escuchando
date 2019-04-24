@@ -1,0 +1,143 @@
+{
+	"ronda": 1,
+	"preguntas": [
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "El honrado leñador. Había una vez un pobre leñador que regresaba a su casa después de una jornada de duro trabajo. Al cruzar un puentecillo sobre el río, se le cayó el hacha al agua. Entonces empezó a lamentarse tristemente: ¿Cómo me ganaré el sustento ahora que no tengo hacha? Al instante ¡oh, maravilla! Una bella ninfa aparecía sobre las aguas y dijo al leñador: Espera, buen hombre: traeré tu hacha. Se hundió en la corriente y poco después reaparecía con un hacha de oro entre las manos. El leñador dijo que aquella no era la suya. Por segunda vez se sumergió la ninfa, para reaparecer después con otra hacha de plata. Tampoco es la mía dijo el afligido leñador. Por tercera vez la ninfa buscó bajo el agua. Al reaparecer llevaba un hacha de hierro. ¡Oh gracias, gracias! ¡Esa es la mía! Pero, por tu honradez, yo te regalo las otras dos. Has preferido la pobreza a la mentira y te mereces un premio. 
+			¿De qué era la segunda hacha que sacó la ninfa del agua?",
+			"opciones": [
+				"De plata",
+				"De bronce",
+				"De hierro"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "¿A quién se le cayó el hacha al agua?",
+			"opciones": [
+				"Al leñador",
+				"A la ninfa",
+				"Al duende"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Español",
+			"tema": "Comprensión lectora",
+			"pregunta": "¿Quién le recuperó el hacha al leñador?",
+			"opciones": [
+				"La ninfa",
+				"EL hombre rana",
+				"La rana"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "¿Qué número multiplicado por 3 y al que luego le sumamos 48 da como resultado 90?",
+			"opciones": [
+				"14",
+				"18",
+				"21",
+				"15"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "Si cada juguete cuesta 32 pesos, entonces, para comprar 1 juguete para cada uno de mis 15 sobrinos debo gastar aproximadamente",
+			"opciones": [
+				"500",
+				"300",
+				"400",
+				"600"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Matemáticas",
+			"tema": "Aritmética y álgebra",
+			"pregunta": "Un tablero de ajedrez está formado por 64 cuadrados. Un tablero semejante con 144, ¿cuántos debería tener de cada lado?",
+			"opciones": [
+				"12",
+				"8",
+				"10",
+				"14"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Biología",
+			"pregunta": "¿Por qué sudamos cuando hace calor?",
+			"opciones": [
+				"Para regular la temperatura corporal.",
+				"Para evitar el cansancio.",
+				"Para correr más.",
+				"Para ahuyentar a los mosquitos."
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Biología",
+			"pregunta": "¿Por qué se arrugan los dedos bajo el agua?",
+			"opciones": [
+				"Para mejorar el agarre de cuerpos húmedos.",
+				"Para absorber más nutrientes.",
+				"Porque el agua filtra en la capa exterior de la piel.",
+				"Para evitar quemarnos."
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Geología",
+			"pregunta": "¿Cuántas estaciones tiene el año?",
+			"opciones": [
+				"Cuatro",
+				"Una",
+				"Dos",
+				"Cinco"
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		},
+		{
+			"materia": "Ciencias",
+			"tema": "Geología",
+			"pregunta": "¿Por qué se producen las estaciones?",
+			"opciones": [
+				"Por el movimiento de traslación.",
+				"Por las vacaciones.",
+				"Por la posición de Saturno en el sistema solar.",
+				"Por el movimiento de transacción."
+			],
+			"dificultad": "fácil",
+			"puntos": 1,
+			"monedas": 1
+		}
+	]
+}
