@@ -17,7 +17,7 @@ const LaunchRequestHandler = {
     return request.type === 'LaunchRequest'
   },
   handle(handlerInput) {
-    const speechOutput = '¡Hola, bienvenido a Aprende Jugando!';
+    const speechOutput = '¡Hola, bienvenido a Aprende Jugando!, esta skill te permitirá ampliar tus conocimientos de ciencias, matemáticas y español y te servirá como entrenamiento para la prueba PISA';
      
     return handlerInput.responseBuilder
             .speak(speechOutput)
@@ -83,7 +83,6 @@ const LaunchRequestHandler = {
   },
 };
 
-
 /*-------------
         INICIA UNA RONDA DE PREGUNTAS
 ----------------*/
@@ -93,39 +92,347 @@ const RondaIntententHandler = {
     return request.type === 'IntentRequest'
         && request.intent.name === 'RondaIntentent';
   },
-  handle(handlerInput) {
-    return new Promise((resolve, reject) => {
-      handlerInput.attributesManager.getPersistentAttributes()
-        .then((attributes) => {
-          const speechText = 'aka la bateria';
-          
-          console.log(attributes);
-          
-          attributes.datax="Datos aka";
-          
-          attributes.position = {
-            'direction': 'north',
-          };
-          attributes.usuario = {
-            'usuario': 'Beto',
-          };
-
-        
+  async handle(handlerInput) {
+    const attributes = await handlerInput.attributesManager.getPersistentAttributes();
+    var validate=0;
     
+    //Sesiones
+    const sess = handlerInput.attributesManager.getSessionAttributes();
+    console.log("RRRRR");
+    console.log(sess.userName);
+    
+    if(typeof sess.userName == 'undefined'){
+      const speechText='Antes de iniciar la ronda, debes elegir un jugador, para ello di: jugar con; y el nombre del usuario.';
+      
+      
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+    }
+    else{
+      //ya traes un user seleccionado, ronda de prenguntas
+      
+       if(typeof sess.pregunta == 'undefined'){
+         //aun no hay preguntas ponle la pregunta 1
+         
+         var obj = require('./RondaInicio/ronda1.json');
+         console.log(obj.ronda); 
+         
+         console.log(obj.preguntas[0].pregunta); 
+         var Ptexto=obj.preguntas[0].pregunta;
+         
+         var myArray = [0, 1, 2,3];    
+         var rand = myArray[Math.floor(Math.random() * myArray.length)];
+         console.log(rand);
+         
+         
+        // Used like so
+        var arr = [0, 1, 2, 3];
+        console.log(arr);
+        arr = shuffle(arr);
+        console.log("shuflesx");
+        console.log(arr);
+        
+         
+         
+         var POpcionesA=obj.preguntas[0].opciones[arr[0]];
+         var POpcionesB=obj.preguntas[0].opciones[arr[1]];
+         var POpcionesC=obj.preguntas[0].opciones[arr[2]];
+         var POpcionesD=obj.preguntas[0].opciones[arr[3]];
+         
+         var POpciones='Opción A:'+POpcionesA+', Opción B:'+POpcionesB+', Opción C:'+POpcionesC+':, Opción D:'+POpcionesD+'.';
+         var Pcorrecta=obj.preguntas[0].opciones[0];
+         
+        var i;
+        for (i = 0; i < 4; i++) {
+          if(obj.preguntas[0].opciones[arr[i]]==Pcorrecta){
+            console.log("Correcta la: ");
+            console.log(i);
+            if(i==0){
+              sess.PLetraCorrecta='a';
+            }
+            else if(i==1){
+              sess.PLetraCorrecta='b';
+            }
+            else if(i==2){
+              sess.PLetraCorrecta='c';
+            }
+            else if(i==3){
+              sess.PLetraCorrecta='d';
+            }
+            else{}
+          }
           
-          handlerInput.attributesManager.setPersistentAttributes(attributes);
-          handlerInput.attributesManager.savePersistentAttributes();
+        }
+         
+        
+         sess.pregunta = 0;
+         sess.tierra = "Inicio";
+         sess.PNumber=sess.pregunta;
+         sess.Ptexto=Ptexto;
+         sess.POpciones=POpciones;
+         sess.Pcorrecta=Pcorrecta;
+         
+         
+         var numPregunta=parseInt(sess.pregunta)*1+1;
+         const speechText='Pregunta '+numPregunta+'. '+Ptexto+'. '+POpciones+'. Dime la opción que sea la correcta. ';
+         
+         
+         return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .withSimpleCard(SKILL_NAME, speechText)
+        .getResponse();
+        
+       }
+       else{
+        //pregunta 2 a la 10
+        /*console.log(obj.ronda); 
+        var obj = require('./RondaInicio/ronda1.json');
+        console.log(obj.ronda); 
+         */
+         const speechText='Ya tienes una ronda iniciada, puedes pedir que repita la pregunta, o si conces la respuesta, dime ¿cuál es la opción correcta?.';
+         
+         
+         return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .withSimpleCard(SKILL_NAME, speechText)
+        .getResponse();
+       }
+      
+      //Pregunta 1
+      
+      //validate=validate+1;
+      //const speechText='Aka la ronda de las preguntas, continue.';
+      /*
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+      */
+    }
+    
+    //checa tierra seleccionada
+    /*Agregar check de tierra seleccionada para elejir de este tipo de preguntas, por default inicio*/
+    
+    //checa ronda en este mundo
+      
+  },
+};
 
-          resolve(handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt(speechText)
-            .withSimpleCard(SKILL_NAME, speechText)
-            .getResponse());
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+
+
+/*-------------
+        DAS LAS OPCION CORRECTA
+----------------*/
+const OpcionIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+        && request.intent.name === 'OpcionIntent';
+  },
+  async handle(handlerInput) {
+    const attributes = await handlerInput.attributesManager.getPersistentAttributes();
+    
+    //Sesiones
+    const sess = handlerInput.attributesManager.getSessionAttributes();
+    const letra = handlerInput.requestEnvelope.request.intent.slots.letra.value;
+    
+         
+    /*-----*/
+    console.log("AAAAAA");
+    
+    
+    
+    if(sess.pregunta == 9){
+      var speechText="la pregunta 10 -> (9)";
+      
+      //ultima pregunta ya no cargo más
+      if(sess.PLetraCorrecta == letra){
+        //correcta
+        var speechText='Respuesta correcta. Tus resultados son:';
+      }
+      else{
+        //incorrecta
+        var speechText='Respuesta correcta. Tus resultados son: ';
+      }
+      //Last response
+      sess.pregunta=parseInt(sess.pregunta)+1;
+      
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+      
+    }
+    else if(sess.pregunta == 10){
+      var speechText='Ya has terminado la ronda, juega otra ronda diciendo: incia una ronda de preguntas ';
+      
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+    }
+    else{
+    
+    
+    if(sess.PLetraCorrecta == letra){
+      //respuesta correcta
+      
+      //agregar sonido de OK antes del texto
+      
+      /*Cargamos nueva pregunta*/
+      var nuevaPregunta=parseInt(sess.PNumber)+1;
+      
+     
+      var obj = require('./RondaInicio/ronda1.json');
+      console.log(obj.ronda); 
+   
+      var Ptexto=obj.preguntas[nuevaPregunta].pregunta;
+      
+      var arr = [0, 1, 2, 3];
+      console.log(arr);
+      arr = shuffle(arr);
+      console.log("shuflesx");
+      console.log(arr);
+        
+         var POpcionesA=obj.preguntas[nuevaPregunta].opciones[arr[0]];
+         var POpcionesB=obj.preguntas[nuevaPregunta].opciones[arr[1]];
+         var POpcionesC=obj.preguntas[nuevaPregunta].opciones[arr[2]];
+         var POpcionesD=obj.preguntas[nuevaPregunta].opciones[arr[3]];
+         
+         var POpciones='Opción A:'+POpcionesA+', Opción B:'+POpcionesB+', Opción C:'+POpcionesC+':, Opción D:'+POpcionesD+'.';
+         var Pcorrecta=obj.preguntas[nuevaPregunta].opciones[0];
+      
+   
+      
+      var numPregunta=parseInt(nuevaPregunta)*1+1;
+      const speechTextNew='Pregunta '+numPregunta+'. '+Ptexto+'. '+POpciones+'. Dime la opción que sea la correcta. ';
+      
+      /*SESION NEW PREGUNTA*/
+      var i;
+        for (i = 0; i < 4; i++) {
+          if(obj.preguntas[nuevaPregunta].opciones[arr[i]]==Pcorrecta){
+            console.log("Correcta la: ");
+            console.log(i);
+            if(i==0){
+              sess.PLetraCorrecta='a';
+            }
+            else if(i==1){
+              sess.PLetraCorrecta='b';
+            }
+            else if(i==2){
+              sess.PLetraCorrecta='c';
+            }
+            else if(i==3){
+              sess.PLetraCorrecta='d';
+            }
+            else{}
+          }
+          
+        }
+         
+        
+         sess.pregunta = nuevaPregunta;
+         sess.tierra = "Inicio";
+         sess.PNumber=nuevaPregunta;
+         sess.Ptexto=Ptexto;
+         sess.POpciones=POpciones;
+         sess.Pcorrecta=Pcorrecta;
+         
+         
+      const speechText='Respuesta correcta. '+speechTextNew;
+      
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+      
+    }
+    else{
+      //respuesta incorrecta
+      
+      //agregar sonido de error antes del texto
+      
+      /*Cargamos nueva pregunta*/
+      var nuevaPregunta=parseInt(sess.PNumber)+1;
+      
+     
+      var obj = require('./RondaInicio/ronda1.json');
+      console.log(obj.ronda); 
+   
+      var Ptexto=obj.preguntas[nuevaPregunta].pregunta;
+      
+      var arr = [0, 1, 2, 3];
+      console.log(arr);
+      arr = shuffle(arr);
+      console.log("shuflesx");
+      console.log(arr);
+        
+         var POpcionesA=obj.preguntas[nuevaPregunta].opciones[arr[0]];
+         var POpcionesB=obj.preguntas[nuevaPregunta].opciones[arr[1]];
+         var POpcionesC=obj.preguntas[nuevaPregunta].opciones[arr[2]];
+         var POpcionesD=obj.preguntas[nuevaPregunta].opciones[arr[3]];
+         
+         var POpciones='Opción A:'+POpcionesA+', Opción B:'+POpcionesB+', Opción C:'+POpcionesC+':, Opción D:'+POpcionesD+'.';
+         var Pcorrecta=obj.preguntas[nuevaPregunta].opciones[0];
+      
+   
+      
+      var numPregunta=parseInt(nuevaPregunta)*1+1;
+      const speechTextNew='Pregunta '+numPregunta+'. '+Ptexto+'. '+POpciones+'. Dime la opción que sea la correcta. ';
+      
+      /*SESION NEW PREGUNTA*/
+      var i;
+        for (i = 0; i < 4; i++) {
+          if(obj.preguntas[nuevaPregunta].opciones[arr[i]]==Pcorrecta){
+            console.log("Correcta la: ");
+            console.log(i);
+            if(i==0){
+              sess.PLetraCorrecta='a';
+            }
+            else if(i==1){
+              sess.PLetraCorrecta='b';
+            }
+            else if(i==2){
+              sess.PLetraCorrecta='c';
+            }
+            else if(i==3){
+              sess.PLetraCorrecta='d';
+            }
+            else{}
+          }
+          
+        }
+         
+        
+         sess.pregunta = nuevaPregunta;
+         sess.tierra = "Inicio";
+         sess.PNumber=nuevaPregunta;
+         sess.Ptexto=Ptexto;
+         sess.POpciones=POpciones;
+         sess.Pcorrecta=Pcorrecta;
+         
+      const speechText='Respuesta incorrecta. '+speechTextNew;
+         
+      
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(SKILL_NAME, speechText)
+      .getResponse();
+      
+    }
+    
+    }
+
   },
 };
 
@@ -304,6 +611,8 @@ const MapShowIntentHandler = {
             .getResponse();
   },
 };
+
+
 
 /*-------------
         AGREGA USUARIO AL JUEGO
@@ -513,10 +822,9 @@ const ErrorHandler = {
 /*STATIC DATA*/
 
 const SKILL_NAME = 'Aprende y escucha';
-const GET_FACT_MESSAGE = 'Here\'s your fact: ';
-const HELP_MESSAGE = 'mesaje de ayuda';
-const HELP_REPROMPT = 'msg reprompt';
-const STOP_MESSAGE = 'adios';
+const HELP_MESSAGE = 'Puedes iniciar el juego diciendo, Inicia una ronda, o para salir di, cancela.';
+const HELP_REPROMPT = '¿Cómo te puedo ayudar?';
+const STOP_MESSAGE = 'Hasta pronto';
 
 const data = [
   'A year on Mercury is just 88 days long.',
@@ -525,6 +833,27 @@ const data = [
 
 //const skillBuilder = Alexa.SkillBuilders.standard();
 const skillBuilder = Alexa.SkillBuilders.custom();
+
+
+function shuffle(array) {
+           var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 
 exports.handler = skillBuilder
   .addRequestHandlers(
@@ -542,6 +871,7 @@ exports.handler = skillBuilder
     JugarComoIntentHandler,//cambia de jugador
     MapShowIntentHandler, //mustra avance en el juego
     RondaIntententHandler,//Inicia ronda de preguntas
+    OpcionIntentHandler, //indicas la opcion correcta
     NoTeEntendiIntentHandler,//cualquier cosa que diga el usuario y no entienda
     HelpHandler,
     ExitHandler,
