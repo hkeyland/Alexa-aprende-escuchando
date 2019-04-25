@@ -84,13 +84,167 @@ const MapShowIntentHandler = {
   },
   handle(handlerInput) {
    
-    const speechOutput = 'Muestra los detalles del mapa';
+    const speechOutput = 'Aquí tienes el mapa';
 
     return handlerInput.responseBuilder
-      .speak(speechOutput)
-      .reprompt('aka repromt')
-      .withSimpleCard(SKILL_NAME, speechOutput)
-      .getResponse();
+            .speak(`${speechOutput}. ¿Qué mas necesitas?`)
+            .reprompt('¿qué mas necesitas?')
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./mapa.json'),
+                datasources: {
+                    "listTemplate1Metadata": {
+                        "type": "object",
+                        "objectId": "lt1Metadata",
+                        "backgroundImage": {
+                            "contentDescription": null,
+                            "smallSourceUrl": null,
+                            "largeSourceUrl": null,
+                            "sources": [
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "small",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                },
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "large",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                }
+                            ]
+                        },
+                        "title": "Aprende Jugando - Mapa",
+                        "logoUrl": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/aprende_logo.png"
+                    },
+                    "listTemplate1ListData": {
+                        "type": "list",
+                        "listId": "lt1Sample",
+                        "totalNumberOfItems": 3,
+                        "listPage": {
+                            "listItems": [
+                                {
+                                    "listItemIdentifier": "selva",
+                                    "ordinalNumber": 1,
+                                    "textContent": {
+                                        "primaryText": {
+                                            "type": "PlainText",
+                                            "text": "Selva"
+                                        },
+                                        "secondaryText": {
+                                            "type": "PlainText",
+                                            "text": "6 rondas"
+                                        },
+                                        "tertiaryText": {
+                                            "type": "PlainText",
+                                            "text": "60 monedas"
+                                        }
+                                    },
+                                    "image": {
+                                        "contentDescription": null,
+                                        "smallSourceUrl": null,
+                                        "largeSourceUrl": null,
+                                        "sources": [
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/selva.png",
+                                                "size": "small",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            },
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/selva.png",
+                                                "size": "large",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            }
+                                        ]
+                                    },
+                                    "token": "selva"
+                                },
+                                {
+                                    "listItemIdentifier": "manglar",
+                                    "ordinalNumber": 2,
+                                    "textContent": {
+                                        "primaryText": {
+                                            "type": "PlainText",
+                                            "text": "Manglar"
+                                        },
+                                        "secondaryText": {
+                                            "type": "RichText",
+                                            "text": "6 rondas"
+                                        },
+                                        "tertiaryText": {
+                                            "type": "PlainText",
+                                            "text": "70 monedas"
+                                        }
+                                    },
+                                    "image": {
+                                        "contentDescription": null,
+                                        "smallSourceUrl": null,
+                                        "largeSourceUrl": null,
+                                        "sources": [
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/manglar_2.png",
+                                                "size": "small",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            },
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/manglar_2.png",
+                                                "size": "large",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            }
+                                        ]
+                                    },
+                                    "token": "manglar"
+                                },
+                                {
+                                    "listItemIdentifier": "desierto",
+                                    "ordinalNumber": 3,
+                                    "textContent": {
+                                        "primaryText": {
+                                            "type": "PlainText",
+                                            "text": "Desierto"
+                                        },
+                                        "secondaryText": {
+                                            "type": "RichText",
+                                            "text": "6 rondas"
+                                        },
+                                        "tertiaryText": {
+                                            "type": "PlainText",
+                                            "text": "60 monedas"
+                                        }
+                                    },
+                                    "image": {
+                                        "contentDescription": null,
+                                        "smallSourceUrl": null,
+                                        "largeSourceUrl": null,
+                                        "sources": [
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/desierto_2.png",
+                                                "size": "small",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            },
+                                            {
+                                                "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/desierto_2.png",
+                                                "size": "large",
+                                                "widthPixels": 0,
+                                                "heightPixels": 0
+                                            }
+                                        ]
+                                    },
+                                    "token": "desierto"
+                                }
+                            ]
+                        }
+                    }
+                }
+            })
+            .getResponse();
   },
 };
 
