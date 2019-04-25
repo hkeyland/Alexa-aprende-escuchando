@@ -1,10 +1,5 @@
 const Alexa = require('ask-sdk');
 
-/*var AWS = require('aws-sdk');
-AWS.config.update({region: 'us-east-1'});
-var db = new AWS.DynamoDB();
-var docClient = new AWS.DynamoDB.DocumentClient();
-*/
 
 const { DynamoDbPersistenceAdapter } = require('ask-sdk-dynamodb-persistence-adapter');
 const persistenceAdapter = new DynamoDbPersistenceAdapter({
@@ -13,7 +8,9 @@ const persistenceAdapter = new DynamoDbPersistenceAdapter({
 });
 
 
-/*ABRE LA SKILL*/
+/*-------------
+        ABRE LA SKILL
+----------------*/
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -30,7 +27,9 @@ const LaunchRequestHandler = {
 };
 
 
-/*INICIA UNA RONDA*/
+/*-------------
+        INICIA UNA RONDA DE PREGUNTAS
+----------------*/
 const RondaIntententHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -55,11 +54,7 @@ const RondaIntententHandler = {
           };
 
         
-          
-          /*attributes = {
-            'mundo':"Inicio"
-          };
-          */
+    
           
           handlerInput.attributesManager.setPersistentAttributes(attributes);
           handlerInput.attributesManager.savePersistentAttributes();
@@ -77,7 +72,10 @@ const RondaIntententHandler = {
   },
 };
 
-/*MAPA*/
+
+/*-------------
+        MUESTRA EL MAPA
+----------------*/
 const MapShowIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -96,8 +94,9 @@ const MapShowIntentHandler = {
   },
 };
 
-
-/*AGREGA USUARIO */
+/*-------------
+        AGREGA USUARIO AL JUEGO
+----------------*/
 const AgregaUsuarioIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -166,52 +165,66 @@ const AgregaUsuarioIntentHandler = {
   },
 };
 
-/*JUGAR COMO USUARIO */
+/*-------------
+        USA EL USUARIO X PARA JUGAR
+----------------*/
 const JugarComoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
     return request.type === 'IntentRequest'
         && request.intent.name === 'JugarComoIntent';
   },
-  handle(handlerInput) {
-    
-    //SESIONS
-    //const attributes = handlerInput.attributesManager.getSessionAttributes();
-    //SAVE SESIONS
-    //attributes.userName="Juan";
-    
-    
-    //const echoID = handlerInput.requestEnvelope.request.requestId;
-    const echoID = handlerInput.requestEnvelope.session.user.userId;
+  async handle(handlerInput) {
+    const attributes = await handlerInput.attributesManager.getPersistentAttributes();
     const userName = handlerInput.requestEnvelope.request.intent.slots.user.value;
-
-
-    const speechText = `Quieres jugar como ${userName} en el dispo ${echoID}. Vamos a checar si ya create el usuario, 
-    si no existe se crea y guardo la sesion como este usuario
-    `;
+    const speechText="nada";
     
- 
-    
-    //const userDynamo="Juan";
-    //const deviceDynamo="AG4KFOTTZDVFSXNA5WQ4M2AHWR6CI7F6IVBEKI37GJ7XTQCHAICBV63RAZHASEU3W2KRJHSSUK2RVTLGLLDRNUCPDXOGEDK36GLQFHBU76MWPYY7VB2SOHOSNASMAV5CHJ4L3J2G66MNRL4KRRVGTA6DY35LOG6HM6KKKITW32JAE7BAB2ODH72LV343VFEXFR7CTGRQI7B7ZSA";
-    
-    
-    //const speechOutput = 'Ok muy bien vamo a jugar con'+userDynamo;
-
-    return handlerInput.responseBuilder
+    //Sesiones
+    const sess = handlerInput.attributesManager.getSessionAttributes();
+    if(sess.userName==userName){
+      const speechText='Ya seleccionaste al usuario '+userName+', para empezar el juego di: Inicia una ronda de preguntas.';
+      
+      return handlerInput.responseBuilder
       .speak(speechText)
-      .reprompt('aka repromt')
+      .reprompt(speechText)
       .withSimpleCard(SKILL_NAME, speechText)
       .getResponse();
+    }
+    else{
+      //No se ha seclecciona aun un user
+      if(attributes.usuarios.includes(userName)){
+        //Si esta agregado
+        const speechText='Bienvenido '+userName+', ahora puedes iniciar el juego, para empezar di: Inicia una ronda de preguntas. ';
+        const sess = handlerInput.attributesManager.getSessionAttributes();
+        sess.userName=userName;
+        //RESPONSE
+        return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .withSimpleCard(SKILL_NAME, speechText)
+        .getResponse();
+      }
+      else{
+        //No esta gregado
+        const speechText='No existe el usuario '+userName+', antes de jugar debes agregarlo, para ello di: Agrega a '+userName+'.';
+        return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .withSimpleCard(SKILL_NAME, speechText)
+        .getResponse();
       
+      }
+    }
+    
   },
 };
 
 
 
 
-
-/*NO ENTENDI*/
+/*-------------
+        MAGICK ERROR
+----------------*/
 const NoTeEntendiIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -231,8 +244,9 @@ const NoTeEntendiIntentHandler = {
 };
 
 
-
-/*DEFAULT*/
+/*-------------
+        ALEXAS
+----------------*/
 const HelpHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -246,7 +260,6 @@ const HelpHandler = {
       .getResponse();
   },
 };
-
 const ExitHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -260,7 +273,6 @@ const ExitHandler = {
       .getResponse();
   },
 };
-
 const SessionEndedRequestHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -272,7 +284,6 @@ const SessionEndedRequestHandler = {
     return handlerInput.responseBuilder.getResponse();
   },
 };
-
 const ErrorHandler = {
   canHandle() {
     return true;
