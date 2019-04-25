@@ -8,7 +8,8 @@
 			"opciones": [
 				"De oro",
 				"De plata",
-				"De cobre"
+				"De cobre",
+				"De litio"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
@@ -21,7 +22,8 @@
 			"opciones": [
 				"Un puentecillo",
 				"Un túnel",
-				"Un viaducto"
+				"Un viaducto",
+				"Avenida"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
@@ -34,7 +36,8 @@
 			"opciones": [
 				"A la mentira",
 				"Recompensa",
-				"A la verdad"
+				"A la verdad",
+				"A la fama"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
