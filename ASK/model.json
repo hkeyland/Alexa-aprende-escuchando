@@ -1,0 +1,174 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "aprende jugando",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RondaIntentent",
+                    "slots": [
+                        {
+                            "name": "ronda",
+                            "type": "rondaSTR"
+                        }
+                    ],
+                    "samples": [
+                        "inicia una {ronda}",
+                        "empecemos",
+                        "empieza una {ronda}"
+                    ]
+                },
+                {
+                    "name": "MapShowIntent",
+                    "slots": [
+                        {
+                            "name": "mapa",
+                            "type": "mapa"
+                        }
+                    ],
+                    "samples": [
+                        "{mapa}",
+                        "muestra  {mapa}",
+                        "muestra el {mapa}",
+                        "dame el  {mapa}",
+                        "dime mi {mapa}"
+                    ]
+                },
+                {
+                    "name": "NoTeEntendiIntent",
+                    "slots": [],
+                    "samples": [
+                        "canela",
+                        "no se",
+                        "no se que hacer"
+                    ]
+                },
+                {
+                    "name": "AgregaUsuarioIntent",
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "AMAZON.FirstName"
+                        }
+                    ],
+                    "samples": [
+                        "soy {user}",
+                        "agrega a {user}"
+                    ]
+                },
+                {
+                    "name": "JugarComoIntent",
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "AMAZON.FirstName"
+                        }
+                    ],
+                    "samples": [
+                        "jugar con {user}",
+                        "juega como {user}",
+                        "soy {user}",
+                        "juega con {user}",
+                        "jugar como {user}"
+                    ]
+                },
+                {
+                    "name": "OpcionIntent",
+                    "slots": [
+                        {
+                            "name": "letra",
+                            "type": "opciones"
+                        }
+                    ],
+                    "samples": [
+                        "{letra}",
+                        "la {letra}",
+                        "opción {letra}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "rondaSTR",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "trivia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "preguntas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bateria de preguntas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ronda de preguntas"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "mapa",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "mapa"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "avance"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "opciones",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "d"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "c"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "b"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
