@@ -17,12 +17,69 @@ const LaunchRequestHandler = {
     return request.type === 'LaunchRequest'
   },
   handle(handlerInput) {
-    const speechOutput = 'Detalles al abrir la skill';
+    const speechOutput = '¡Hola, bienvenido a Aprende Jugando!';
      
     return handlerInput.responseBuilder
-      .speak(speechOutput)
-      .reprompt(HELP_REPROMPT)
-      .getResponse();
+            .speak(speechOutput)
+            .reprompt(HELP_REPROMPT)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./welcome.json'),
+                datasources: {
+                    "bodyTemplate6Data": {
+                        "type": "object",
+                        "objectId": "bt6Sample",
+                        "backgroundImage": {
+                            "contentDescription": null,
+                            "smallSourceUrl": null,
+                            "largeSourceUrl": null,
+                            "sources": [
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "small",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                },
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "large",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                }
+                            ]
+                        },
+                        "image": {
+                            "contentDescription": null,
+                            "smallSourceUrl": null,
+                            "largeSourceUrl": null,
+                            "sources": [
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "small",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                },
+                                {
+                                    "url": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/cielo2.jpg",
+                                    "size": "large",
+                                    "widthPixels": 0,
+                                    "heightPixels": 0
+                                }
+                            ]
+                        },
+                        "textContent": {
+                            "primaryText": {
+                                "type": "PlainText",
+                                "text": "Bienvenido a Aprende Jugando"
+                            }
+                        },
+                        "logoUrl": "https://s3.us-east-2.amazonaws.com/prueba-angelmuve/aprende_logo.png",
+                        "hintText": "Puedes decir, \"Alexa, empieza una ronda\""
+                    }
+                }
+            })
+            .getResponse();
   },
 };
 
