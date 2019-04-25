@@ -8,7 +8,8 @@
 			"opciones": [
 				"De plata",
 				"De bronce",
-				"De hierro"
+				"De hierro",
+				"De Litio"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
@@ -21,7 +22,8 @@
 			"opciones": [
 				"Al leñador",
 				"A la ninfa",
-				"Al duende"
+				"Al duende",
+				"Al ogro"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
@@ -34,7 +36,8 @@
 			"opciones": [
 				"La ninfa",
 				"EL hombre rana",
-				"La rana"
+				"La rana",
+				"El hada"
 			],
 			"dificultad": "fácil",
 			"puntos": 1,
